@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import register.Register;
+
 public class main extends JFrame implements ActionListener {
     
     JTextField tf = new JTextField();;
