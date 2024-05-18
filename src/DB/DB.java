@@ -18,7 +18,7 @@ public class DB {
     }
     
     public static void addUser(Connection con, String username, String password) {
-        String query = "INSERT INTO `user` (username, password) VALUES (?, ?);";
+        String query = "INSERT INTO user (username, password) VALUES (?, ?);";
         try {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, username);
@@ -32,17 +32,17 @@ public class DB {
     }
     
     public static boolean checkUser(Connection con,  String inputtedUsername) {
-        String query = "SELECT * FROM `user` WHERE `username` =?;";
+        String query = "SELECT * FROM user WHERE username=?;";
         try {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, inputtedUsername);
             
             ResultSet result = statement.executeQuery();
-            
-            return false;
+           
+            return result.next();
         } catch (SQLException error) {
             System.out.println("Error while executing query " + error);
-        }
+        } 
         return false;
     }
 }
