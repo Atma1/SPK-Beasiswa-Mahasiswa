@@ -24,6 +24,7 @@ public class DatabaseModel {
             statement.setString(1, username);
             statement.setString(2, password);
             statement.executeUpdate();
+            System.out.println(statement.getParameterMetaData());
             
             System.out.println("Inserted sucessfully");
         } catch (SQLException error) {
@@ -31,11 +32,13 @@ public class DatabaseModel {
         }
     }
     
-    public static boolean checkUser(Connection con,  String inputtedUsername) {
-        String query = "SELECT * FROM user WHERE username=?;";
+    public static boolean checkUser(Connection con,  String inputtedUsername,
+            String inputtedPassword) {
+        String query = "SELECT * FROM user WHERE username=? AND password=?;";
         try {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, inputtedUsername);
+            statement.setString(2, inputtedPassword);
             
             ResultSet result = statement.executeQuery();
            
