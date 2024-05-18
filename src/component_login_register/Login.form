@@ -43,7 +43,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel2" alignment="0" pref="898" max="32767" attributes="0"/>
+          <Component id="jPanel2" alignment="0" pref="899" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -69,7 +69,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,7 +78,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -120,13 +120,13 @@
                                       <Component id="jLabel4" min="-2" pref="117" max="-2" attributes="0"/>
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel3" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                                   <Component id="usernameField" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                                   <Component id="passwordField" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="179" pref="359" max="32767" attributes="0"/>
+                      <EmptySpace min="219" pref="399" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -145,7 +145,7 @@
                       <Component id="jLabel3" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="passwordField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="loginBTN" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="noAccountBTN" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -195,17 +195,17 @@
                 <Property name="text" type="java.lang.String" value="Sistem SPK"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="usernameField">
+            <Component class="javax.swing.JPasswordField" name="passwordField">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameFieldActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="passwordField">
+            <Component class="javax.swing.JTextField" name="usernameField">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Type your username"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameFieldActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
