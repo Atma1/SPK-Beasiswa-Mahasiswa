@@ -17,8 +17,18 @@ public class DB {
         return null;
     }
     
-    public static void addUser(Connection con) {
-        
+    public static void addUser(Connection con, String username, String password) {
+        String query = "INSERT INTO `user` (username, password) VALUES (?, ?)";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.executeUpdate();
+            
+            System.out.println("Inserted sucessfully");
+        } catch (SQLException error) {
+            System.out.println("Error while executing query " + error);
+        }
     }
     
     
