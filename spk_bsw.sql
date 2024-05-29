@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2024 at 10:36 AM
+-- Generation Time: May 29, 2024 at 10:43 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `spk_bsw`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kriteria`
+--
+
+CREATE TABLE `kriteria` (
+  `id` int(11) NOT NULL,
+  `nama_kriteria` varchar(11) NOT NULL,
+  `bobot` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kriteria`
+--
+
+INSERT INTO `kriteria` (`id`, `nama_kriteria`, `bobot`) VALUES
+(1, 'Ekonomi', 0.7),
+(2, 'Essai', 0.2),
+(3, 'Prestasi', 0.4),
+(4, 'IPK', 0.3);
 
 -- --------------------------------------------------------
 
@@ -45,6 +67,12 @@ INSERT INTO `user` (`id`, `username`, `password`) VALUES
 --
 
 --
+-- Indexes for table `kriteria`
+--
+ALTER TABLE `kriteria`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -53,6 +81,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `kriteria`
+--
+ALTER TABLE `kriteria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
