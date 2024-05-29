@@ -51,10 +51,10 @@ public class DB {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             for (Object[] row : kriteria) {
                 if (row.length == 2) {
-                    int bobot = (int) row[1];
+                    float bobot = (float) row[1];
                     String nama_kriteria = (String) row[0];
                     preparedStatement.setString(1, nama_kriteria);
-                    preparedStatement.setInt(2, bobot);
+                    preparedStatement.setFloat(2, bobot);
                     preparedStatement.addBatch();
                 } else {
                     throw new IllegalArgumentException("Each row in the 2D array must have exactly 2 elements.");
