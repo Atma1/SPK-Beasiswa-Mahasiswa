@@ -203,6 +203,7 @@
                 <Property name="text" type="java.lang.String" value="TAMBAH KRITERIA"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dashboard1MouseClicked"/>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dashboard1MouseEntered"/>
               </Events>
             </Component>
@@ -264,6 +265,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="NILAI KRITERIA"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dashboard2MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -382,6 +386,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="LOGOUT"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dashboard4MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

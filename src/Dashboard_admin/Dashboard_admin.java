@@ -8,6 +8,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.*;
 import java.util.Locale;
+import form.AturKriteria;
+import form.formMhs;
+import component_login_register.Login;
 
 public class Dashboard_admin extends javax.swing.JFrame {
 
@@ -152,6 +155,9 @@ public class Dashboard_admin extends javax.swing.JFrame {
         dashboard1.setForeground(new java.awt.Color(102, 102, 102));
         dashboard1.setText("TAMBAH KRITERIA");
         dashboard1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboard1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 dashboard1MouseEntered(evt);
             }
@@ -195,6 +201,11 @@ public class Dashboard_admin extends javax.swing.JFrame {
         dashboard2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         dashboard2.setForeground(new java.awt.Color(102, 102, 102));
         dashboard2.setText("NILAI KRITERIA");
+        dashboard2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboard2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pdashboard2Layout = new javax.swing.GroupLayout(pdashboard2);
         pdashboard2.setLayout(pdashboard2Layout);
@@ -273,6 +284,11 @@ public class Dashboard_admin extends javax.swing.JFrame {
         dashboard4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         dashboard4.setForeground(new java.awt.Color(102, 102, 102));
         dashboard4.setText("LOGOUT");
+        dashboard4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboard4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pdashboard4Layout = new javax.swing.GroupLayout(pdashboard4);
         pdashboard4.setLayout(pdashboard4Layout);
@@ -726,6 +742,30 @@ public class Dashboard_admin extends javax.swing.JFrame {
         // TODO add your handling code here:
         pdashboard.setBackground(new Color(210,210,251));
     }//GEN-LAST:event_dashboard1MouseEntered
+
+    private void dashboard1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard1MouseClicked
+        // TODO add your handling code here:
+        AturKriteria AturKriteriaForm = new AturKriteria();
+        AturKriteriaForm.setVisible(true);
+        AturKriteriaForm.pack();
+        this.dispose();
+    }//GEN-LAST:event_dashboard1MouseClicked
+
+    private void dashboard2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard2MouseClicked
+        // TODO add your handling code here:
+        formMhs FormMahasiswa = new formMhs();
+        FormMahasiswa.setVisible(true);
+        FormMahasiswa.pack();
+        this.dispose();
+    }//GEN-LAST:event_dashboard2MouseClicked
+
+    private void dashboard4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard4MouseClicked
+        // TODO add your handling code here:
+        Login LoginForm = new Login();
+        LoginForm.setVisible(true);
+        LoginForm.pack();
+        this.dispose();
+    }//GEN-LAST:event_dashboard4MouseClicked
 
     /**
      * @param args the command line arguments
