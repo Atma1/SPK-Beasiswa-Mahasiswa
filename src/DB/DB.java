@@ -45,4 +45,25 @@ public class DB {
         } 
         return false;
     }
+    
+     public static void insertIntoKriteria(Connection connection, Object[][] kriteria){
+        String sql = "INSERT INTO kriteria (nama_kriteria, bobot) VALUES (?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            for (Object[] row : kriteria) {
+                if (row.length == 2) {
+                    float bobot = (float) row[1];
+                    String nama_kriteria = (String) row[0];
+                    preparedStatement.setString(1, nama_kriteria);
+                    preparedStatement.setFloat(2, bobot);
+                    preparedStatement.addBatch();
+                } else {
+                    throw new IllegalArgumentException("Each row in the 2D array must have exactly 2 elements.");
+                }
+            }
+            preparedStatement.executeBatch();
+            System.out.println("Inserted Kriteria!");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 }
