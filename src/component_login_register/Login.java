@@ -2,6 +2,7 @@ package component_login_register;
 
 import DB.DatabaseModel;
 import component_login_register.Register;
+import Dashboard_admin.Dashboard_admin;
 import java.sql.Connection;
 import java.util.Arrays;
 import javax.swing.WindowConstants;
@@ -229,7 +230,10 @@ public class Login extends javax.swing.JFrame {
                 DatabaseModel.checkUser(con, inputtedUser, inputtedPassword);
         
         if (exist) {
-            System.out.println("Exist");
+            Dashboard_admin AdminDashboard = new Dashboard_admin();
+            AdminDashboard.setVisible(true);
+            AdminDashboard.pack();
+            this.dispose();
         } else {
             this.accountNotFoundLabel.setVisible(true);
         }
