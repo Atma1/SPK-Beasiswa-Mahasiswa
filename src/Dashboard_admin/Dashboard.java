@@ -1,6 +1,10 @@
 package Dashboard_admin;
 
+import component_login_register.Login;
 import data.Kriteria;
+import data.DataMahasiswa;
+import data.DataPeringkat;
+import proses.Penghitungan;
 import javax.swing.JFrame;
 
 public class Dashboard extends javax.swing.JFrame {
@@ -179,6 +183,11 @@ public class Dashboard extends javax.swing.JFrame {
         logoutButton.setBorderPainted(false);
         logoutButton.setContentAreaFilled(false);
         logoutButton.setIconTextGap(10);
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -853,7 +862,9 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void datamahasiswaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datamahasiswaButtonActionPerformed
-        // TODO add your handling code here:
+        DataMahasiswa DataMahasiswaPage = new DataMahasiswa();
+        DataMahasiswaPage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_datamahasiswaButtonActionPerformed
 
     private void editkriteriaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editkriteriaButtonActionPerformed
@@ -863,12 +874,22 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_editkriteriaButtonActionPerformed
 
     private void penghitunganButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_penghitunganButtonActionPerformed
-        // TODO add your handling code here:
+        Penghitungan PenghitunganPage = new Penghitungan();
+        PenghitunganPage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_penghitunganButtonActionPerformed
 
     private void dataperingkatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataperingkatButtonActionPerformed
-        // TODO add your handling code here:
+        DataPeringkat DataPeringkatPage = new DataPeringkat();
+        DataPeringkatPage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_dataperingkatButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        this.dispose();
+        Login LoginPage = new Login();
+        LoginPage.setVisible(true);
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

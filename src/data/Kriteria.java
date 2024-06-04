@@ -1,7 +1,9 @@
 package data;
 
 import DB.DatabaseModel;
+import component_login_register.Login;
 import Dashboard_admin.Dashboard;
+import proses.Penghitungan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,20 +35,15 @@ public class Kriteria extends javax.swing.JFrame {
         ResultSet rs = null;
 
         try {
-            conn = DatabaseModel.getConnection(); // Dapatkan koneksi ke database
-            String sql = "SELECT * FROM kriteria"; // Query SQL untuk mengambil data dari tabel kriteria
+            conn = DatabaseModel.getConnection();
+            String sql = "SELECT * FROM kriteria";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
-            // Buat model tabel untuk menampung data dari database
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            
-            // Bersihkan isi tabel sebelum menambahkan data baru
             model.setRowCount(0);
-
-            // Tambahkan data dari hasil query ke dalam tabel
             while (rs.next()) {
-                Object[] row = {rs.getString("nama"), rs.getString("bobot")};
+                Object[] row = {rs.getString("id"), rs.getString("nama"), rs.getString("bobot")};
                 model.addRow(row);
             }
         } catch (SQLException e) {
@@ -67,54 +64,11 @@ public class Kriteria extends javax.swing.JFrame {
     private void jTable1MouseClicked(MouseEvent evt) {
         int row = jTable1.getSelectedRow();
         if (row >= 0) {
-            String namaKriteria = (String) jTable1.getValueAt(row, 0);
-            String bobotKriteria = (String) jTable1.getValueAt(row, 1);
+            String namaKriteria = (String) jTable1.getValueAt(row, 1);
+            String bobotKriteria = (String) jTable1.getValueAt(row, 2);
             jTextField2.setText(namaKriteria);
             jTextField3.setText(bobotKriteria);
         }
-    }
-    
-    // Method untuk mengupdate data kriteria
-    private void updateKriteria() {
-        String namaKriteria = jTextField2.getText();
-        String bobotKriteria = jTextField3.getText();
-
-        if (namaKriteria.isEmpty() || bobotKriteria.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nama Kriteria dan Bobot Kriteria tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            double bobot = Double.parseDouble(bobotKriteria);
-
-            // Buat DefaultTableModel dari jTable1
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-            // Periksa apakah ada baris yang dipilih untuk diupdate
-            int selectedRow = jTable1.getSelectedRow();
-            if (selectedRow >= 0) {
-                // Update data di baris yang dipilih
-                model.setValueAt(namaKriteria, selectedRow, 0);
-                model.setValueAt(bobot, selectedRow, 1);
-                JOptionPane.showMessageDialog(this, "Data kriteria berhasil diupdate", "Success", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                // Tambahkan baris baru dengan data baru
-                model.addRow(new Object[]{namaKriteria, bobot});
-                JOptionPane.showMessageDialog(this, "Data kriteria berhasil ditambahkan", "Success", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-            // Kosongkan input fields
-            jTextField2.setText("");
-            jTextField3.setText("");
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Bobot Kriteria harus berupa angka", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    // Method untuk mengosokan form
-    private void resetForm() {
-        jTextField2.setText("");
-        jTextField3.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -141,6 +95,8 @@ public class Kriteria extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -255,6 +211,11 @@ public class Kriteria extends javax.swing.JFrame {
         logoutButton.setBorderPainted(false);
         logoutButton.setContentAreaFilled(false);
         logoutButton.setIconTextGap(10);
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -344,11 +305,6 @@ public class Kriteria extends javax.swing.JFrame {
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField2.setActionCommand("<Not Set>");
         jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -426,33 +382,36 @@ public class Kriteria extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(0, 0, 0)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(cancelButton))
                 .addContainerGap())
         );
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel5.setText("Pencarian :");
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nama Kriteria", "Bobot Kriteria"
+                "id", "Nama Kriteria", "Bobot Kriteria"
             }
         ));
         jTable1.setRowHeight(60);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Nama Kriteria");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Bobot Kriteria");
+            jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -465,7 +424,10 @@ public class Kriteria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
@@ -481,34 +443,42 @@ public class Kriteria extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE))))))
+                                .addComponent(jScrollPane1))))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void datamahasiswaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datamahasiswaButtonActionPerformed
-        // TODO add your handling code here:
+        DataMahasiswa DataMahasiswaPage = new DataMahasiswa();
+        DataMahasiswaPage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_datamahasiswaButtonActionPerformed
 
     private void penghitunganButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_penghitunganButtonActionPerformed
-        // TODO add your handling code here:
+        Penghitungan PenghitunganPage = new Penghitungan();
+        PenghitunganPage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_penghitunganButtonActionPerformed
 
     private void dataperingkatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataperingkatButtonActionPerformed
-        // TODO add your handling code here:
+        DataPeringkat DataPeringkatPage = new DataPeringkat();
+        DataPeringkatPage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_dataperingkatButtonActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void dashboardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardButtonActionPerformed
         Dashboard DashboardPage = new Dashboard();
@@ -517,12 +487,80 @@ public class Kriteria extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboardButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        resetForm();
+        jTextField2.setText("");
+        jTextField3.setText("");
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        updateKriteria();
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Pilih baris terlebih dahulu", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String id = (String) jTable1.getValueAt(selectedRow, 0); // mengambil ID di kolom 0
+
+        // Mengambil data dari input fields
+        String namaKriteria = jTextField2.getText();
+        String bobotKriteria = jTextField3.getText();
+
+        // Melakukan validasi data
+        if (namaKriteria.isEmpty() || bobotKriteria.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nama Kriteria dan Bobot Kriteria tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            double bobot = Double.parseDouble(bobotKriteria);
+
+            Connection conn = null;
+            PreparedStatement pstmt = null;
+
+            try {
+                conn = DatabaseModel.getConnection();
+
+                String updateQuery = "UPDATE kriteria SET nama = ?, bobot = ? WHERE id = ?";
+                pstmt = conn.prepareStatement(updateQuery);
+                pstmt.setString(1, namaKriteria);
+                pstmt.setDouble(2, bobot);
+                pstmt.setString(3, id);
+                pstmt.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Data kriteria berhasil diupdate", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                loadData();
+
+                // Kosongkan input fields
+                jTextField2.setText("");
+                jTextField3.setText("");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Gagal mengakses database: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                if (pstmt != null) {
+                    try {
+                        pstmt.close();
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, "Gagal menutup PreparedStatement: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                if (conn != null) {
+                    try {
+                        conn.close();
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, "Gagal menutup koneksi: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Bobot Kriteria harus berupa angka", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        this.dispose();
+        Login LoginPage = new Login();
+        LoginPage.setVisible(true);
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -566,6 +604,7 @@ public class Kriteria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -574,6 +613,7 @@ public class Kriteria extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JButton logoutButton;
