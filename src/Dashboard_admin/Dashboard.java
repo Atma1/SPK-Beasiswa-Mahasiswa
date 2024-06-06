@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 public class Dashboard extends javax.swing.JFrame {
 
@@ -95,11 +96,12 @@ public class Dashboard extends javax.swing.JFrame {
         editkriteriaButton = new javax.swing.JButton();
         datamahasiswaButton = new javax.swing.JButton();
         penghitunganButton = new javax.swing.JButton();
-        dataperingkatButton = new javax.swing.JButton();
+        resetAll = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
+        dataperingkatButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -201,18 +203,18 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        dataperingkatButton.setBackground(new java.awt.Color(72, 202, 228));
-        dataperingkatButton.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        dataperingkatButton.setForeground(new java.awt.Color(0, 0, 0));
-        dataperingkatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Peringkat.png"))); // NOI18N
-        dataperingkatButton.setText("Data Peringkat");
-        dataperingkatButton.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        dataperingkatButton.setBorderPainted(false);
-        dataperingkatButton.setContentAreaFilled(false);
-        dataperingkatButton.setIconTextGap(10);
-        dataperingkatButton.addActionListener(new java.awt.event.ActionListener() {
+        resetAll.setBackground(new java.awt.Color(72, 202, 228));
+        resetAll.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        resetAll.setForeground(new java.awt.Color(0, 0, 0));
+        resetAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/reset.png"))); // NOI18N
+        resetAll.setText("Reset Semua");
+        resetAll.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        resetAll.setBorderPainted(false);
+        resetAll.setContentAreaFilled(false);
+        resetAll.setIconTextGap(10);
+        resetAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataperingkatButtonActionPerformed(evt);
+                resetAllActionPerformed(evt);
             }
         });
 
@@ -278,6 +280,21 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        dataperingkatButton.setBackground(new java.awt.Color(72, 202, 228));
+        dataperingkatButton.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        dataperingkatButton.setForeground(new java.awt.Color(0, 0, 0));
+        dataperingkatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/Peringkat.png"))); // NOI18N
+        dataperingkatButton.setText("Data Peringkat");
+        dataperingkatButton.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        dataperingkatButton.setBorderPainted(false);
+        dataperingkatButton.setContentAreaFilled(false);
+        dataperingkatButton.setIconTextGap(10);
+        dataperingkatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataperingkatButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -285,11 +302,13 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(editkriteriaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(datamahasiswaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(penghitunganButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(dataperingkatButton, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+            .addComponent(resetAll, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dataperingkatButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -305,7 +324,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(penghitunganButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dataperingkatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 496, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resetAll, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -362,7 +383,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -503,7 +524,7 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jumlahMahasiswaFT, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFT, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
         );
@@ -545,7 +566,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
@@ -915,10 +936,10 @@ public class Dashboard extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -926,7 +947,7 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                         .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
@@ -952,17 +973,31 @@ public class Dashboard extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_penghitunganButtonActionPerformed
 
-    private void dataperingkatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataperingkatButtonActionPerformed
-        DataPeringkat DataPeringkatPage = new DataPeringkat();
-        DataPeringkatPage.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_dataperingkatButtonActionPerformed
+    private void resetAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetAllActionPerformed
+        int answer = JOptionPane.showConfirmDialog(
+                this, 
+                "Apakah Anda yakin ingin me-reset SPK?",
+                "Confirmation Dialog",
+                JOptionPane.YES_NO_OPTION
+        );
+        if (answer == 0) {
+            DatabaseModel.resetAll();
+            JOptionPane.showMessageDialog(this, "SPK berhasil di-reset!");
+            this.logoutButtonActionPerformed(evt);
+        }
+    }//GEN-LAST:event_resetAllActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.dispose();
         Login LoginPage = new Login();
         LoginPage.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void dataperingkatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataperingkatButtonActionPerformed
+        DataPeringkat DataPeringkatPage = new DataPeringkat();
+        DataPeringkatPage.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_dataperingkatButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1053,5 +1088,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jumlahSeluruhMahasiswa;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton penghitunganButton;
+    private javax.swing.JButton resetAll;
     // End of variables declaration//GEN-END:variables
 }
