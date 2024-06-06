@@ -17,35 +17,19 @@ public class DatabaseModel {
         return null;
     }
     
-    public static void addUser(Connection con, String username, String password) {
-        String query = "INSERT INTO user (username, password) VALUES (?, ?);";
+    public static void resetAll() {
         try {
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.executeUpdate();
-            System.out.println(statement.getParameterMetaData());
-            
-            System.out.println("Inserted sucessfully");
-        } catch (SQLException error) {
-            System.out.println("Error while executing query " + error);
+            Connection con = DatabaseModel.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.addBatch("TRUNCATE TABLE mahasiswa;");
+            stmt.addBatch("TRUNCATE TABLE ranking;");
+            stmt.addBatch("TRUNCATE TABLE datakriteria;");
+            stmt.addBatch("UPDATE kriteria SET bobot = 0");
+            stmt.addBatch("DELETE FROM account WHERE role = 'mahasiswa';");
+            stmt.executeBatch();
+            con.close();
+        } catch (SQLException e) {
+             e.printStackTrace();
         }
-    }
-    
-    public static boolean checkUser(Connection con,  String inputtedUsername,
-            String inputtedPassword) {
-        String query = "SELECT * FROM user WHERE username=? AND password=?;";
-        try {
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, inputtedUsername);
-            statement.setString(2, inputtedPassword);
-            
-            ResultSet result = statement.executeQuery();
-           
-            return result.next();
-        } catch (SQLException error) {
-            System.out.println("Error while executing query " + error);
-        } 
-        return false;
     }
 }
