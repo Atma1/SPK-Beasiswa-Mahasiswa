@@ -1,17 +1,90 @@
 package Dashboard_admin;
 
+import DB.DatabaseModel;
 import component_login_register.Login;
 import data.Kriteria;
 import data.DataMahasiswa;
 import data.DataPeringkat;
 import proses.Penghitungan;
 import javax.swing.JFrame;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Connection;
 
 public class Dashboard extends javax.swing.JFrame {
 
     public Dashboard() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        updateJumlahMahasiswa();
+        updateJumlahMahasiswaFakultas();
+    }
+    
+    // Method untuk menampilkan jumlah mahasiswa yang mendaftar secara dinamis.
+    private void updateJumlahMahasiswa() {
+        int studentCount = 0;
+        try {
+            DatabaseModel databaseModel = new DatabaseModel();
+            String sql = "SELECT COUNT(*) FROM account WHERE role = ?";
+            PreparedStatement pstmt = databaseModel.getConnection().prepareStatement(sql);
+            pstmt.setString(1, "Mahasiswa");
+
+            ResultSet resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                studentCount = resultSet.getInt(1);
+            } 
+            
+            jumlahSeluruhMahasiswa.setText(studentCount + " mahasiswa");
+            resultSet.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void jumlahMahasiswaFakultas(String fakultas, javax.swing.JLabel label) {
+        int studentCount = 0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet resultSet = null;
+
+        try {
+            DatabaseModel databaseModel = new DatabaseModel();
+            conn = databaseModel.getConnection();
+            String sql = "SELECT COUNT(*) FROM mahasiswa WHERE fakultas = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, fakultas);
+
+            resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                studentCount = resultSet.getInt(1);
+            } 
+
+            label.setText(studentCount + " mahasiswa");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Tutup semua resource
+            try {
+                if (resultSet != null) resultSet.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    private void updateJumlahMahasiswaFakultas() {
+        jumlahMahasiswaFakultas("Ekonomi dan Bisnis", jumlahMahasiswaFEB);
+        jumlahMahasiswaFakultas("Pertanian", jumlahMahasiswaFAPERTA);
+        jumlahMahasiswaFakultas("Teknik", jumlahMahasiswaFT);
+        jumlahMahasiswaFakultas("Ilmu Sosial dan Ilmu Politik", jumlahMahasiswaFISIP);
+        jumlahMahasiswaFakultas("Arsitektur dan Desain", jumlahMahasiswaFAD);
+        jumlahMahasiswaFakultas("Ilmu Komputer", jumlahMahasiswaFIK);
+        jumlahMahasiswaFakultas("Hukum", jumlahMahasiswaFH);
+        jumlahMahasiswaFakultas("Kedokteran", jumlahMahasiswaFK);
     }
 
     @SuppressWarnings("unchecked")
@@ -31,22 +104,22 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jumlahMahasiswaFEB = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        jumlahMahasiswaFAPERTA = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        jumlahMahasiswaFT = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        jumlahMahasiswaFISIP = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -54,26 +127,26 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jumlahMahasiswaFIK = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        jumlahMahasiswaFAD = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        jumlahMahasiswaFH = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        jumlahMahasiswaFK = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        jumlahSeluruhMahasiswa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -264,10 +337,10 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setPreferredSize(new java.awt.Dimension(300, 175));
 
-        jLabel5.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("25 mahasiswa");
+        jumlahMahasiswaFEB.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jumlahMahasiswaFEB.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFEB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFEB.setText("25 mahasiswa");
 
         jPanel14.setBackground(new java.awt.Color(72, 202, 228));
         jPanel14.setPreferredSize(new java.awt.Dimension(0, 82));
@@ -308,7 +381,7 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFEB, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
         );
@@ -317,17 +390,17 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel5)
+                .addComponent(jumlahMahasiswaFEB)
                 .addGap(30, 30, 30))
         );
 
         jPanel6.setBackground(new java.awt.Color(0, 180, 216));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel8.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("10 mahasiswa");
+        jumlahMahasiswaFAPERTA.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jumlahMahasiswaFAPERTA.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFAPERTA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFAPERTA.setText("10 mahasiswa");
 
         jPanel15.setBackground(new java.awt.Color(72, 202, 228));
 
@@ -368,7 +441,7 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFAPERTA, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -377,7 +450,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel8)
+                .addComponent(jumlahMahasiswaFAPERTA)
                 .addGap(30, 30, 30))
         );
 
@@ -385,10 +458,10 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel7.setPreferredSize(new java.awt.Dimension(300, 175));
 
-        jLabel11.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("50 mahasiswa");
+        jumlahMahasiswaFT.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jumlahMahasiswaFT.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFT.setText("50 mahasiswa");
 
         jPanel16.setBackground(new java.awt.Color(72, 202, 228));
         jPanel16.setPreferredSize(new java.awt.Dimension(0, 82));
@@ -430,7 +503,7 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFT, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
         );
@@ -439,7 +512,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel11)
+                .addComponent(jumlahMahasiswaFT)
                 .addGap(30, 30, 30))
         );
 
@@ -447,10 +520,10 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel8.setPreferredSize(new java.awt.Dimension(300, 175));
 
-        jLabel14.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("45 mahasiswa");
+        jumlahMahasiswaFISIP.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jumlahMahasiswaFISIP.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFISIP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFISIP.setText("45 mahasiswa");
 
         jPanel17.setBackground(new java.awt.Color(72, 202, 228));
 
@@ -491,7 +564,7 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFISIP, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -500,7 +573,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel14)
+                .addComponent(jumlahMahasiswaFISIP)
                 .addGap(30, 30, 30))
         );
 
@@ -540,10 +613,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel17.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("20 mahasiswa");
+        jumlahMahasiswaFIK.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jumlahMahasiswaFIK.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFIK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFIK.setText("20 mahasiswa");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -552,7 +625,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFIK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -560,7 +633,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel17)
+                .addComponent(jumlahMahasiswaFIK)
                 .addGap(30, 30, 30))
         );
 
@@ -600,10 +673,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel20.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("15 mahasiswa");
+        jumlahMahasiswaFAD.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jumlahMahasiswaFAD.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFAD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFAD.setText("15 mahasiswa");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -612,7 +685,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFAD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -620,7 +693,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel20)
+                .addComponent(jumlahMahasiswaFAD)
                 .addGap(30, 30, 30))
         );
 
@@ -660,10 +733,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel23.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("20 mahasiswa");
+        jumlahMahasiswaFH.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jumlahMahasiswaFH.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFH.setText("20 mahasiswa");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -672,7 +745,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -680,7 +753,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel23)
+                .addComponent(jumlahMahasiswaFH)
                 .addGap(30, 30, 30))
         );
 
@@ -720,10 +793,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel26.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setText("5 mahasiswa");
+        jumlahMahasiswaFK.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jumlahMahasiswaFK.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahMahasiswaFK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahMahasiswaFK.setText("5 mahasiswa");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -732,7 +805,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jumlahMahasiswaFK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -740,7 +813,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel26)
+                .addComponent(jumlahMahasiswaFK)
                 .addGap(30, 30, 30))
         );
 
@@ -771,11 +844,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        jLabel29.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("450 mahasiswa");
-        jLabel29.setToolTipText("");
+        jumlahSeluruhMahasiswa.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jumlahSeluruhMahasiswa.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahSeluruhMahasiswa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jumlahSeluruhMahasiswa.setText("450 mahasiswa");
+        jumlahSeluruhMahasiswa.setToolTipText("");
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -784,7 +857,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(jPanel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jumlahSeluruhMahasiswa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -792,7 +865,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jLabel29)
+                .addComponent(jumlahSeluruhMahasiswa)
                 .addGap(27, 27, 27))
         );
 
@@ -930,31 +1003,22 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -978,6 +1042,15 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel jumlahMahasiswaFAD;
+    private javax.swing.JLabel jumlahMahasiswaFAPERTA;
+    private javax.swing.JLabel jumlahMahasiswaFEB;
+    private javax.swing.JLabel jumlahMahasiswaFH;
+    private javax.swing.JLabel jumlahMahasiswaFIK;
+    private javax.swing.JLabel jumlahMahasiswaFISIP;
+    private javax.swing.JLabel jumlahMahasiswaFK;
+    private javax.swing.JLabel jumlahMahasiswaFT;
+    private javax.swing.JLabel jumlahSeluruhMahasiswa;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton penghitunganButton;
     // End of variables declaration//GEN-END:variables

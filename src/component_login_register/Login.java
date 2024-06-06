@@ -1,7 +1,7 @@
 package component_login_register;
 
 import DB.DatabaseModel;
-import Dashboard_admin.Dashboard_admin;
+import Dashboard_admin.Dashboard;
 import home.HomeMahasiswa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -173,11 +173,6 @@ public class Login extends javax.swing.JFrame {
 
         jTextField1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel28.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -188,11 +183,6 @@ public class Login extends javax.swing.JFrame {
         jLabel30.setText("Password");
 
         passwordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
 
         jButton1.setBackground(new java.awt.Color(0, 180, 215));
         jButton1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -310,9 +300,8 @@ public class Login extends javax.swing.JFrame {
                     HomeMahasiswa homeMahasiswa = new HomeMahasiswa(idAccount);
                     homeMahasiswa.setVisible(true);
                 } else {
-                    Dashboard_admin AdminDashboard = new Dashboard_admin();
-                    AdminDashboard.setVisible(true);
-                    AdminDashboard.pack();
+                    Dashboard DashboardPage = new Dashboard();
+                    DashboardPage.setVisible(true);
                     this.dispose();
                 }
                 this.dispose();
@@ -334,14 +323,6 @@ public class Login extends javax.swing.JFrame {
         RegisterPage.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Method untuk memeriksa peran pengguna sebagai mahasiswa
     private boolean cekPeranMahasiswa(int idAccount) {

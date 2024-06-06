@@ -596,6 +596,14 @@ public class Penghitungan extends javax.swing.JFrame {
             return;
         }
 
+        // Tampilkan dialog konfirmasi
+        int response = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin mempublish hasil penghitungan?", "Konfirmasi Publish", JOptionPane.YES_NO_OPTION);
+
+        // Jika pengguna memilih "No", batalkan operasi
+        if (response == JOptionPane.NO_OPTION) {
+            return;
+        }
+
         ArrayList<Object[]> dataList = mengambilData();
         ArrayList<Object[]> sawDataList = hitungSkorAkhirSAW(normalisasiData(dataList));
 
