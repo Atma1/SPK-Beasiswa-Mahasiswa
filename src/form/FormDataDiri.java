@@ -41,8 +41,8 @@ public class FormDataDiri extends javax.swing.JFrame {
                 String fakultas = rs.getString("fakultas");
                 String prodi = rs.getString("prodi");
                 
-                jTextField1.setText(nama);
-                jTextField2.setText(npm);
+                jTextField1.setText(npm);
+                jTextField2.setText(nama);
                 jComboBox3.setSelectedItem(jeniskelamin);
                 jTextArea1.setText(alamat);
                 jComboBox1.setSelectedItem(fakultas);
@@ -456,8 +456,8 @@ public class FormDataDiri extends javax.swing.JFrame {
 
     private void savedataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savedataButtonActionPerformed
         // Tangkap teks
-        String nama = jTextField1.getText();
-        String npm = jTextField2.getText();
+        String npm = jTextField1.getText();
+        String nama = jTextField2.getText();
         String jeniskelamin = (String) jComboBox3.getSelectedItem();
         String alamat = jTextArea1.getText();
         String fakultas = (String) jComboBox1.getSelectedItem();
