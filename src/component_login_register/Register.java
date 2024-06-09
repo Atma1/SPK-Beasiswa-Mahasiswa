@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 public class Register extends javax.swing.JFrame {
 
@@ -291,18 +292,35 @@ public class Register extends javax.swing.JFrame {
 
         // Buat koneksi ke database dan simpan data
         Connection conn = DatabaseModel.getConnection();
-        String sql = "INSERT INTO account (username, password, role) VALUES (?, ?, ?)";
+        
+        
 
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            pstmt.setString(3, role);
-            pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Registrasi berhasil!");
-            dispose();
-            pstmt.close();
-            conn.close();
+            String sql2 = "SELECT * FROM account WHERE username = ?";
+            PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+            pstmt2.setString(1, username);
+            ResultSet check = pstmt2.executeQuery();
+            
+            if(check.next()){
+                JOptionPane.showMessageDialog(this, "Username telah digunakan!");
+            }else{
+                String sql = "INSERT INTO account (username, password, role) VALUES (?, ?, ?)";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, username);
+                pstmt.setString(2, password);
+                pstmt.setString(3, role);
+                pstmt.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Registrasi berhasil, Silahkan Login!");
+                //            dispose();
+                pstmt.close();
+                conn.close();
+                Login LoginPage = new Login();
+                LoginPage.setVisible(true);
+                this.dispose();
+            }
+            
+            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Registrasi gagal: " + e.getMessage());
             e.printStackTrace();
