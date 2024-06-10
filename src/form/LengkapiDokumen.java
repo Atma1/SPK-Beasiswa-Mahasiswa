@@ -177,6 +177,7 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         logoutButton = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
         datadiriButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -389,16 +390,16 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(K1Button)
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(K1Button)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         hapusK1Button.setBackground(new java.awt.Color(0, 180, 215));
@@ -461,9 +462,9 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(K2Button)
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,9 +524,9 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(K3Button)
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,9 +585,9 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(K4Button)
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -645,9 +646,9 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(K5Button)
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -706,9 +707,9 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(K6Button)
-                .addContainerGap(618, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -722,7 +723,7 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1430, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -731,25 +732,15 @@ public class LengkapiDokumen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hapusK1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1205, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(62, 62, 62))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hapusK2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -789,20 +780,33 @@ public class LengkapiDokumen extends javax.swing.JFrame {
                         .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hapusK6Button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hapusK1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hapusK2Button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hapusK1Button, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addGap(4, 4, 4)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(hapusK1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jLabel5)
@@ -852,8 +856,10 @@ public class LengkapiDokumen extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(hapusK6Button, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jScrollPane1.setViewportView(jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -862,8 +868,7 @@ public class LengkapiDokumen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane1))
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -871,8 +876,10 @@ public class LengkapiDokumen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(jScrollPane1))))
         );
 
         pack();
@@ -896,53 +903,53 @@ public class LengkapiDokumen extends javax.swing.JFrame {
         FormDataDiriPage.setVisible(true);
     }//GEN-LAST:event_datadiriButtonActionPerformed
 
-    private void K1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K1ButtonActionPerformed
-        handlepilihdokButton(1);
-    }//GEN-LAST:event_K1ButtonActionPerformed
+    private void K6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K6ButtonActionPerformed
+        handlepilihdokButton(6);
+    }//GEN-LAST:event_K6ButtonActionPerformed
 
-    private void K2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K2ButtonActionPerformed
-        handlepilihdokButton(2);
-    }//GEN-LAST:event_K2ButtonActionPerformed
-
-    private void K3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K3ButtonActionPerformed
-        handlepilihdokButton(3);
-    }//GEN-LAST:event_K3ButtonActionPerformed
-
-    private void K4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K4ButtonActionPerformed
-        handlepilihdokButton(4);
-    }//GEN-LAST:event_K4ButtonActionPerformed
+    private void hapusK6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK6ButtonActionPerformed
+        handlehapusdokButton(6);
+    }//GEN-LAST:event_hapusK6ButtonActionPerformed
 
     private void K5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K5ButtonActionPerformed
         handlepilihdokButton(5);
     }//GEN-LAST:event_K5ButtonActionPerformed
 
-    private void K6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K6ButtonActionPerformed
-        handlepilihdokButton(6);
-    }//GEN-LAST:event_K6ButtonActionPerformed
+    private void hapusK5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK5ButtonActionPerformed
+        handlehapusdokButton(5);
+    }//GEN-LAST:event_hapusK5ButtonActionPerformed
 
-    private void hapusK1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK1ButtonActionPerformed
-        handlehapusdokButton(1);
-    }//GEN-LAST:event_hapusK1ButtonActionPerformed
-
-    private void hapusK2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK2ButtonActionPerformed
-        handlehapusdokButton(2);
-    }//GEN-LAST:event_hapusK2ButtonActionPerformed
-
-    private void hapusK3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK3ButtonActionPerformed
-        handlehapusdokButton(3);
-    }//GEN-LAST:event_hapusK3ButtonActionPerformed
+    private void K4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K4ButtonActionPerformed
+        handlepilihdokButton(4);
+    }//GEN-LAST:event_K4ButtonActionPerformed
 
     private void hapusK4ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK4ButtonActionPerformed
         handlehapusdokButton(4);
     }//GEN-LAST:event_hapusK4ButtonActionPerformed
 
-    private void hapusK5ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK5ButtonActionPerformed
-        handlehapusdokButton(5);
-    }//GEN-LAST:event_hapusK5ButtonActionPerformed
+    private void K3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K3ButtonActionPerformed
+        handlepilihdokButton(3);
+    }//GEN-LAST:event_K3ButtonActionPerformed
 
-    private void hapusK6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK6ButtonActionPerformed
-        handlehapusdokButton(6);
-    }//GEN-LAST:event_hapusK6ButtonActionPerformed
+    private void hapusK3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK3ButtonActionPerformed
+        handlehapusdokButton(3);
+    }//GEN-LAST:event_hapusK3ButtonActionPerformed
+
+    private void K2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K2ButtonActionPerformed
+        handlepilihdokButton(2);
+    }//GEN-LAST:event_K2ButtonActionPerformed
+
+    private void hapusK2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK2ButtonActionPerformed
+        handlehapusdokButton(2);
+    }//GEN-LAST:event_hapusK2ButtonActionPerformed
+
+    private void hapusK1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusK1ButtonActionPerformed
+        handlehapusdokButton(1);
+    }//GEN-LAST:event_hapusK1ButtonActionPerformed
+
+    private void K1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_K1ButtonActionPerformed
+        handlepilihdokButton(1);
+    }//GEN-LAST:event_K1ButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton K1Button;
@@ -988,6 +995,7 @@ public class LengkapiDokumen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton lengkapidokumenButton;
     private javax.swing.JButton logoutButton;
     // End of variables declaration//GEN-END:variables

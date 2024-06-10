@@ -327,13 +327,13 @@ public class Login extends javax.swing.JFrame {
     // Method untuk memeriksa peran pengguna sebagai mahasiswa
     private boolean cekPeranMahasiswa(int idAccount) {
         // Query untuk memeriksa apakah pengguna dengan id tertentu adalah mahasiswa
-        String sql = "SELECT * FROM mahasiswa WHERE id_account = ?";
-        
+        String sql = "SELECT * FROM account WHERE role = 'mahasiswa' AND id = ?";
+
         try (Connection conn = DatabaseModel.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, idAccount);
             ResultSet rs = pstmt.executeQuery();
-            
+
             return rs.next(); // Mengembalikan true jika ada data, false jika tidak
         } catch (SQLException e) {
             e.printStackTrace();

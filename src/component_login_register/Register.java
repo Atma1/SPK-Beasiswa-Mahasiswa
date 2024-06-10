@@ -290,20 +290,24 @@ public class Register extends javax.swing.JFrame {
         String password = new String(jPasswordField1.getPassword());
         String role = jComboBox1.getSelectedItem().toString();
 
+        // Validasi untuk memeriksa apakah username dan password kosong
+        if(username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username dan Password harus diisi!");
+            return;
+        }
+
         // Buat koneksi ke database dan simpan data
         Connection conn = DatabaseModel.getConnection();
-        
-        
 
         try {
             String sql2 = "SELECT * FROM account WHERE username = ?";
             PreparedStatement pstmt2 = conn.prepareStatement(sql2);
             pstmt2.setString(1, username);
             ResultSet check = pstmt2.executeQuery();
-            
+
             if(check.next()){
                 JOptionPane.showMessageDialog(this, "Username telah digunakan!");
-            }else{
+            } else {
                 String sql = "INSERT INTO account (username, password, role) VALUES (?, ?, ?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, username);
@@ -311,15 +315,20 @@ public class Register extends javax.swing.JFrame {
                 pstmt.setString(3, role);
                 pstmt.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Registrasi berhasil, Silahkan Login!");
-                //            dispose();
+
+                // Tutup PreparedStatement dan koneksi
                 pstmt.close();
                 conn.close();
+
+                // Alihkan ke halaman login
                 Login LoginPage = new Login();
                 LoginPage.setVisible(true);
                 this.dispose();
             }
-            
-            
+
+            // Tutup PreparedStatement dan ResultSet
+            pstmt2.close();
+            check.close();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Registrasi gagal: " + e.getMessage());
